@@ -36,12 +36,12 @@ class _CounterProviderState extends State<CounterProvider> {
 }
 
 class _InheritedCounter extends InheritedWidget {
+  final _CounterProviderState state;
+
   const _InheritedCounter({
     required this.state,
     required super.child,
   });
-
-  final _CounterProviderState state;
 
   @override
   bool updateShouldNotify(_InheritedCounter oldWidget) {

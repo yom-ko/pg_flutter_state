@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListenableBuilder(
               listenable: notifier,
               builder: (context, widget) => Text(
-                '${notifier.value.counter}',
+                '${notifier.value.count}',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),

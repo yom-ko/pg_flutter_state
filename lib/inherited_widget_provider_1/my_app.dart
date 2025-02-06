@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CounterProviderScope(
+    return const CounterScope(
       child: MaterialApp(
         title: 'Flutter Demo',
         home: MyHomePage(title: 'Test'),
@@ -30,20 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  void initState() {
-    super.initState();
-    print('here initState');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('here didChangeDependencies');
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print('here build');
     final provider = CounterProvider.of(context)!;
 
     return Scaffold(

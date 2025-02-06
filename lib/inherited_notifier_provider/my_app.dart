@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '${notifier.value.counter}',
+              '${notifier.value.count}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

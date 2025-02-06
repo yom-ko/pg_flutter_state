@@ -26,18 +26,18 @@ class CounterProvider<T extends Listenable> extends InheritedNotifier<T> {
 class CounterNotifier extends ValueNotifier<CounterModel> {
   CounterNotifier(super.value);
 
-  void increment() => value = value.copyWith(counter: value.counter + 1);
+  void increment() => value = value.copyWith(count: value.count + 1);
 
-  void decrement() => value = value.copyWith(counter: value.counter - 1);
+  void decrement() => value = value.copyWith(count: value.count - 1);
 }
 
 class CounterModel {
-  final int counter;
+  final int count;
 
-  CounterModel({this.counter = 0});
+  CounterModel({this.count = 0});
 
   CounterModel copyWith({
-    final int? counter,
+    final int? count,
   }) =>
-      CounterModel(counter: counter ?? this.counter);
+      CounterModel(count: count ?? this.count);
 }

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 //* OPTION 1: InheritedWidget + StatefulWidget
 
-// Acts as a mediator between the state container and widgets.
-// When any of its params changes, the widgets that depend on it are rebuilt.
+// Acts as a mediator between a state container and widgets.
+// When any of its parameters changes, the widgets that depend on it are rebuilt.
 class CounterProvider extends InheritedWidget {
+  final int count;
+  final Function() increment;
+  final Function() decrement;
+
   const CounterProvider({
     super.key,
     required this.count,
@@ -13,13 +17,7 @@ class CounterProvider extends InheritedWidget {
     required super.child,
   });
 
-  final int count;
-  final Function() increment;
-  final Function() decrement;
-
   static CounterProvider? of(BuildContext context) {
-    (context.getElementForInheritedWidgetOfExactType<CounterProvider>()?.widget as CounterProvider).count;
-    context.getInheritedWidgetOfExactType<CounterProvider>()?.count;
     return context.dependOnInheritedWidgetOfExactType<CounterProvider>();
   }
 
@@ -29,20 +27,20 @@ class CounterProvider extends InheritedWidget {
   }
 }
 
-class CounterProviderScope extends StatefulWidget {
-  const CounterProviderScope({
+class CounterScope extends StatefulWidget {
+  final Widget child;
+
+  const CounterScope({
     super.key,
     required this.child,
   });
 
-  final Widget child;
-
   @override
-  State<CounterProviderScope> createState() => _CounterProviderScopeState();
+  State<CounterScope> createState() => _CounterScopeState();
 }
 
 // The StatefulWidget's state is the actual state container.
-class _CounterProviderScopeState extends State<CounterProviderScope> {
+class _CounterScopeState extends State<CounterScope> {
   int _count = 0;
 
   _increment() => setState(() => _count++);

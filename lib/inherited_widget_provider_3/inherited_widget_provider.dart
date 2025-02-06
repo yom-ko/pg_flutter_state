@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//* OPTION 2: InheritedWidget + ValueNotifier
+//* OPTION 3: InheritedWidget + ValueNotifier
 class CounterProvider extends InheritedWidget {
   final CounterNotifier notifier;
 
@@ -23,18 +23,18 @@ class CounterProvider extends InheritedWidget {
 class CounterNotifier extends ValueNotifier<CounterModel> {
   CounterNotifier(super.value);
 
-  void increment() => value = value.copyWith(counter: value.counter + 1);
+  void increment() => value = value.copyWith(count: value.count + 1);
 
-  void decrement() => value = value.copyWith(counter: value.counter - 1);
+  void decrement() => value = value.copyWith(count: value.count - 1);
 }
 
 class CounterModel {
-  final int counter;
+  final int count;
 
-  CounterModel({this.counter = 0});
+  CounterModel({this.count = 0});
 
   CounterModel copyWith({
-    final int? counter,
+    final int? count,
   }) =>
-      CounterModel(counter: counter ?? this.counter);
+      CounterModel(count: count ?? this.count);
 }
