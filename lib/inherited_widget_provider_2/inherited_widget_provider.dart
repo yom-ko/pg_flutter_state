@@ -2,55 +2,49 @@ import 'package:flutter/material.dart';
 
 //* OPTION 2: StatefulWidget + InheritedWidget
 
-class CounterProviderScope extends StatefulWidget {
+class CounterProvider extends StatefulWidget {
   final Widget child;
 
-  const CounterProviderScope({
+  const CounterProvider({
     super.key,
     required this.child,
   });
 
   // ignore: library_private_types_in_public_api
-  static _CounterProvider? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<_CounterProvider>();
+  static _CounterProviderState? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<_InheritedCounter>()?.state;
   }
 
   @override
-  State<CounterProviderScope> createState() => _CounterProviderScopeState();
+  State<CounterProvider> createState() => _CounterProviderState();
 }
 
-class _CounterProviderScopeState extends State<CounterProviderScope> {
-  int _count = 0;
+class _CounterProviderState extends State<CounterProvider> {
+  int count = 0;
 
-  _increment() => setState(() => _count++);
+  void increment() => setState(() => count++);
 
-  _decrement() => setState(() => _count--);
+  void decrement() => setState(() => count--);
 
   @override
   Widget build(BuildContext context) {
-    return _CounterProvider(
-      count: _count,
-      increment: _increment,
-      decrement: _decrement,
+    return _InheritedCounter(
+      state: this,
       child: widget.child,
     );
   }
 }
 
-class _CounterProvider extends InheritedWidget {
-  const _CounterProvider({
-    required this.count,
-    required this.increment,
-    required this.decrement,
+class _InheritedCounter extends InheritedWidget {
+  const _InheritedCounter({
+    required this.state,
     required super.child,
   });
 
-  final int count;
-  final Function() increment;
-  final Function() decrement;
+  final _CounterProviderState state;
 
   @override
-  bool updateShouldNotify(_CounterProvider oldWidget) {
-    return count != oldWidget.count;
+  bool updateShouldNotify(_InheritedCounter oldWidget) {
+    return true;
   }
 }

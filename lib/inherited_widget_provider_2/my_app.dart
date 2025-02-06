@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CounterProviderScope(
+    return const CounterProvider(
       child: MaterialApp(
         title: 'Flutter Demo',
         home: MyHomePage(title: 'Test'),
@@ -30,21 +30,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  void initState() {
-    super.initState();
-    print('here initState');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('here didChangeDependencies');
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print('here build');
-    final provider = CounterProviderScope.of(context)!;
+    final counter = CounterProvider.of(context)!;
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
@@ -53,14 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '${provider.count}',
+              '${counter.count}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => provider.increment(),
+        onPressed: () => counter.increment(),
         child: const Icon(Icons.add),
       ),
     );
